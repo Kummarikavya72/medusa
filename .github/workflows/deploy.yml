@@ -1,4 +1,3 @@
-name: CI & Deploy to AWS
 permissions:
   id-token: write
   contents: read
@@ -15,48 +14,3 @@ jobs:
           aws-access-key-id:     ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region:            us-east-1
-
-on:
-  push:
-    branches: [main]
-
-env:
-  AWS_REGION: us-east-1
-  ECR_REPO: medusa-backend
-  AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
-
-    - name: Login to ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
-
-    - name: Build and push Docker image
-      run: |
-        docker build -t $ECR_REPO:latest .
-        docker tag $ECR_REPO:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:latest
-        docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:latest
-
-    - name: Deploy with Terraform
-      working-directory: terraform
-      run: |
-        terraform init -input=false
-        terraform apply -auto-approve \
-          -var="ecr_repo_uri=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO" \
-          -var="db_connection=${{ secrets.DB_CONNECTION }}" \
-          -var="redis_url=${{ secrets.REDIS_URL }}" \
-          -var="jwt_secret=${{ secrets.JWT_SECRET }}" \
-          -var="cookie_secret=${{ secrets.COOKIE_SECRET }}"
