@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "medusa develop",
-    "seed": "medusa seed -f ./data/seed.json"
-     "predeploy": "medusa db:migrate"
+    "seed": "medusa seed -f ./data/seed.json",
+     "predeploy": "medusa db:migrate",
   },
   "dependencies": {
     "@medusajs/medusa": "^1.14.3",
