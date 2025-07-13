@@ -11,7 +11,6 @@ Hi, I'm Kavya — a DevOps enthusiast who built a full IaC + CD solution deployi
 
 ---
  Live Demo & Final Video
-- **Application URL**: `https://<YOUR_ALB_ENDPOINT>`
 - **Video Demo**: https://oorwinsp-my.sharepoint.com/:v:/g/personal/kummari_kavya_oorwin_com/Eb3MteKs5otGnejv12C0QAkBcCAm8DH8-eFnd64BVY-LDw?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=6ifMRv 
 
 ---
@@ -34,8 +33,10 @@ doker-ps
 docker-built
 docker deployed :<img width="1888" height="1147" alt="image" src="https://github.com/user-attachments/assets/9420ff17-5fd2-4abb-b360-dd4852f65c45" />
 
+
 uploaded docker image in ecr
 <img width="1919" height="965" alt="image" src="https://github.com/user-attachments/assets/89413b47-904c-49c8-b1dc-5279a747830c" />
+
 
 used  necessary files and extensions
 ecs <img width="1724" height="740" alt="image" src="https://github.com/user-attachments/assets/3448aca4-fd7e-4a3d-a084-36922d8f6107" />
